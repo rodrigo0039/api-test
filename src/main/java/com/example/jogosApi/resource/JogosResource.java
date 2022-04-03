@@ -42,21 +42,6 @@ public class JogosResource {
 		return jogosRepository.findAll();
 	}
 	
-	
-	@PostMapping("/up")
-	public void i(@RequestParam("file") MultipartFile arquivo){
-		try {
-			if(!arquivo.isEmpty()) {
-				byte [] bytes = arquivo.getBytes();
-				Path caminho = Paths.get(caminhoImagen  + arquivo.getOriginalFilename());
-				Files.write(caminho, bytes);
-				System.out.println(caminho);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	@PostMapping() 
 	public ResponseEntity<Jogos> criar(@Valid Jogos jogos, HttpServletResponse response, 
 			@RequestParam(value = "file", required=false) MultipartFile arquivo){
