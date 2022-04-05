@@ -1,5 +1,7 @@
 package com.example.jogosApi.resource;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,9 +18,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,7 +35,7 @@ import com.example.jogosApi.repository.JogosRepository;
 public class JogosResource {
 	
 	
-	private static String caminhoImagen ="C:\\Users\\Rodrigo\\projetos\\loja_jogos\\src\\app\\imagens\\";
+	private static String caminhoImagen ="C:\\Users\\Rodrigo\\projetos\\loja_jogos\\src\\assets\\img\\";
 	
 	
 	@Autowired
@@ -64,9 +68,28 @@ public class JogosResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(jogosSalvo);
 	}
 	
+	
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remover(Long codigo) {
+	public void remover(@PathVariable("codigo") Long codigo) {
 		jogosRepository.deleteById(codigo);
 	}
+	
+	@GetMapping("/mostrar/imagem/{imagem}")
+	
+	public byte[] mostrarImagem(@PathVariable("imagem") String imagem ){
+		
+		try {
+		File imagemArquivo = new File(caminhoImagen+imagem);
+		
+		System.out.print(imagem);
+		
+		return Files.readAllBytes(imagemArquivo.toPath());
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
 }
