@@ -1,0 +1,5 @@
+CREATE TABLE pedido(
+	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    nome varchar(20)
+    
+)ENGINE = InnoDB DEFAULT CHARSET=utf8;
