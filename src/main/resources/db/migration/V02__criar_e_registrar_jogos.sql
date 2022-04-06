@@ -10,4 +10,4 @@ CREATE TABLE jogos(
     
 )ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO jogos (nome, preco, descricao, codigo_categoria) VALUES ("Elden Ring", 250, "Jogo Legal", 1)
+INSERT INTO jogos (nome, preco, descricao, codigo_categoria) VALUES ("Elden Ring", 250, "Jogo Legal", 1);
