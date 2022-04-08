@@ -18,7 +18,7 @@ public class Endereco {
 	public String getNumeroString() {
 		return numero;
 	}
-	public void setNumeroString(String numeroString) {
+	public void setNumeroString(String numero) {
 		this.numero = numero;
 	}
 	public String getComplemento() {
